@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+movie_payments.html>
+
+<head lan="eng">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Seat selecting</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../../Assets/css/seat.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</head>
+<style>
+    .occupied{
+        /* color:black; */
+         background-color:#535353
+    }
+    .banner {
+        /* background-image:linear-gradient(to bottom, rgba(0,0,0,0), #151515); */
+        height: 300px;
+        width: 60%;
+        background: fixed;
+        background-repeat: no-repeat;
+        margin-left: 20%;
+    }
+
+    #container {
+        display: flex;
+        margin-left: 30%;
+    }
+
+    .seat {
+        width: 50px;
+        height: 50px;
+        margin: 5px;
+        text-align: center;
+        align-items: center;
+        border-radius: 5px;
+        background-color: #ffffff;
+        cursor: pointer;
+    }
+
+    .seat.selected {
+        background-color: #edd605;
+        cursor: not-allowed;
+    }
+
+    #selected-seats {
+        color: white;
+        display: flex;
+        gap: 10px;
+        font-size: 18px;
+    }
+
+    #seat-select {
+        font-size: 25px;
+        padding: 5px 8px;
+        color: white;
+        border: 1px #bd4747 solid;
+        background-color: #bd4747;
+        width: 35px;
+        border-radius: 10px;
+        text-align: center;
+        height: 35px;
+        margin-top: 10px;
+    }
+
+    #next-arrow {
+        background-color: #edd605;
+        width: 30px;
+        height: 30px;
+        padding: 10px;
+        border-radius: 40px;
+        position: relative;
+        left: 10px;
+        top: 50px;
+    }
+
+    /* #select-length{
+        color: black;
+        background-color: white; */
+</style>
+
+<body>
+
+    <!-- header logo -->
+
+    <!-- movie banner -->
+    <div class="banner">
+
+    </div>
+
+    <!-- screen text -->
+    <div class="screen">
+        <img src="../Assets/images/logo/arrow_.svg" id="screen-arrow-logo" alt="arrow">
+        <h3>Screen on this way</h3>
+    </div>
+
+    <div class="seat_disclaimer">
+
+        <div class="show-case">
+            <p class="seat-prime selected"></p>
+            <label style="color: white;">SEAT SELECTED</label>
+        </div>
+
+        <div class="show-case">
+            <p class="seat-prime"></p>
+            <label style="color: white;">SEAT AVAILABLE</label>
+        </div>
+        <div class="show-case">
+            <p class="seat-prime occupied" style="color:black; background-color:#535353">A1</p>
+            <label style="color: white;">SEAT BOOKED</label>
+        </div>
+
+    </div>
+
+    <div class="seatcost-budget">
+
+        <select id="movie">
+            <option value="130"> Classic (Rs130.00)</option>
+        </select>
+
+        <h2>First class(Rs130)</h2>
+
+    </div>
+
+    <div id="container">
+        <div class="seat" data-name="A1">A1</div>
+        <div class="seat" data-name="A2">A2</div>
+        <div class="seat" data-name="A3">A3</div>
+        <div class="seat" data-name="A4">A4</div>
+        <div class="seat" data-name="A5">A5</div>
+        <div class="seat" data-name="A6">A6</div>
+        <div class="seat" data-name="A7">A7</div>
+        <div class="seat" data-name="A8">A8</div>
+        <div class="seat" data-name="A9">A9</div>
+        <div class="seat" data-name="A10">A10</div>
+        <!-- Add more seats as necessary -->
+    </div>
+
+    <div id="container">
+        <div class="seat" data-name="B1">B1</div>
+        <div class="seat" data-name="B2">B2</div>
+        <div class="seat" data-name="B3">B3</div>
+        <div class="seat" data-name="B4">B4</div>
+        <div class="seat" data-name="B5">B5</div>
+        <div class="seat" data-name="B6">B6</div>
+        <div class="seat" data-name="B7">B7</div>
+        <div class="seat" data-name="B8">B8</div>
+        <div class="seat" data-name="B9">B9</div>
+        <div class="seat" data-name="B10">B10</div>
+        <!-- Add more seats as necessary -->
+    </div>
+
+    <div id="container">
+        <div class="seat" data-name="C1">C1</div>
+        <div class="seat" data-name="C2">C2</div>
+        <div class="seat" data-name="C3">C3</div>
+        <div class="seat" data-name="C4">C4</div>
+        <div class="seat" data-name="C5">C5</div>
+        <div class="seat" data-name="C6">C6</div>
+        <div class="seat" data-name="C7">C7</div>
+        <div class="seat" data-name="C8">C8</div>
+        <div class="seat" data-name="C9">C9</div>
+        <div class="seat" data-name="C10">C10</div>
+        <!-- Add more seats as necessary -->
+    </div>
+
+    <div id="container">
+        <div class="seat" data-name="D1">D1</div>
+        <div class="seat" data-name="D2">D2</div>
+        <div class="seat" data-name="D3">D3</div>
+        <div class="seat" data-name="D4">D4</div>
+        <div class="seat" data-name="D5">D5</div>
+        <div class="seat" data-name="D6">D6</div>
+        <div class="seat" data-name="D7">D7</div>
+        <div class="seat" data-name="D8">D8</div>
+        <div class="seat" data-name="D9">D9</div>
+        <div class="seat" data-name="D10">D10</div>
+        <!-- Add more seats as necessary -->
+    </div>
+
+    <div id="container">
+        <div class="seat" data-name="E1">E1</div>
+        <div class="seat" data-name="E2">E2</div>
+        <div class="seat" data-name="E3">E3</div>
+        <div class="seat" data-name="E4">E4</div>
+        <div class="seat" data-name="E5">E5</div>
+        <div class="seat" data-name="E6">E6</div>
+        <div class="seat" data-name="E7">E7</div>
+        <div class="seat" data-name="E8">E8</div>
+        <div class="seat" data-name="E9">E9</div>
+        <div class="seat" data-name="E10">E10</div>
+        <!-- Add more seats as necessary -->
+    </div>
+
+    <!-- seat prime -->
+    <div class="foot">
+        <div class="total_seatandcost">
+
+            <div class="seat_total">
+                <div class="seat_info">
+                    <h3>SEAT INFO</h3>
+                    <!-- <p>Seats<span "></span></p> -->
+                </div>
+                <p id="selected-seats" style="color: black; "></p>
+            </div>
+
+            <div class="theatre_details">
+                <h3 id="theater_name" style="color:black"></h3>
+                <div class="date">
+                    <span id="show_time"></span>
+                    <span style="font-size: 18px;">|</span>
+                    <span id="show_date"></span>
+                    <span id="show_day"></span>
+                    <span id="show_month"></span>
+                </div>
+
+                <!-- <span id="count_details"></span> -->
+            </div>
+
+            <div class="cost_total">
+                <h3>TOTAL(INR)</h3>
+                <span id="total">0</span>
+
+            </div>
+
+        </div>
+
+        <p id="seat-length" style="display: none;"></p>
+
+        <img onclick="bookSeats()" id="next-arrow" src="https://i.ibb.co/wSgdWYq/right-arrow.png" alt="logo">
+
+    </div>
+
+    <script>
+
+
+
+        const movie_list = JSON.parse(localStorage.getItem("show_movie_details"))
+
+        const url = window.location.search;                // ?name=Arun
+        const urlParams = new URLSearchParams(url);    //"name":"ponniyinselvan"    // converting string into key value pair
+        const username = urlParams.get("name")             // return value of the "name" key
+        console.log(username);
+
+        let res;
+        movie_list.find((e) => {
+            if (e.name.movie_name == username) { //arr[0],arr[1]  =e
+                return res = e;
+            }
+
+            return res = 0;
+
+        });
+
+        // let button= document.getElementById("button");
+
+        const banner = document.querySelector(".banner");
+        banner.style.backgroundImage = res.images.background_image;
+
+        const movie_name = document.createElement("h1");
+        movie_name.innerText = res.name.movie_name;
+        banner.append(movie_name);
+
+        // let next_arrow = document.getElementById("next-arrow");
+
+        // let a = document.createElement("a");
+        // a.innerText = "submit";
+        // a.setAttribute("href", "movie_payment_page.html?name=" + res["name"]["movie_name"]);
+        // next_arrow.append(a);
+
+        const users_booking = JSON.parse(localStorage.getItem("user_booking"));
+
+        const theater_name = document.getElementById("theater_name");
+        theater_name.innerHTML = users_booking[0].theatre_name;
+
+        const show_time = document.getElementById("show_time");
+        show_time.innerHTML = users_booking[0].show_time;
+
+        const show_date = document.getElementById("show_date");
+        show_date.innerHTML = users_booking[0].show_date
+
+        const show_day = document.getElementById("show_day");
+        show_day.innerHTML = users_booking[0].show_day
+
+        const show_month = document.getElementById("show_month");
+        show_month.innerHTML = users_booking[0].show_month;
+        console.log();
+
+        const container = document.querySelectorAll("#container");
+        const selectedSeatsList = document.getElementById("selected-seats");
+        const total = document.getElementById("total");
+        const ticketprice = document.getElementById("movie").value;
+
+
+
+
+        let selectedSeats = [];
+
+
+
+
+
+
+
+
+
+
+
+
+        // const booking_history = JSON.parse(localStorage.getItem("booking_history"));
+
+
+        // console.log(booking_history);
+        // let seats_name= booking_history[i].seat_name
+
+
+
+
+
+
+        const seats = document.querySelectorAll(".seat");
+
+
+        let booking_history = JSON.parse(localStorage.getItem("booking_history"));
+        let profile = JSON.parse(localStorage.getItem("profile_details"));
+
+
+
+
+        //    let seatss= seats.forEach((el) => {
+
+            if(booking_history !== null){
+                
+        for (i = 0; i < booking_history.length; i++) {
+
+            // let seat = booking_history[i].seat_name.split(",");
+
+
+            // console.log(seat);
+            if (booking_history[i].movie_name == res.name.movie_name && theater_name.innerText == booking_history[i].theatre_name && show_time.innerText == booking_history[i].show_time && show_date.innerText == booking_history[i].show_date && show_day.innerText == booking_history[i].show_day && show_month.innerHTML == booking_history[i].show_month) {
+
+                console.log("hiii");
+            //  booking_history[i].forEach(e => {
+                    
+                    
+            //     });
+            console.log(booking_history[i].seat_name.split(','))
+            seats.forEach((e)=>{
+                // console.log(e.innerText)
+         
+            booking_history[i].seat_name.split(',').find((el)=>{
+                    if(el==e.innerText){
+                        e.classList.add('occupied')
+                        e.style.backgroundColor="grey"
+                        // e.setAttribute("disabled","")
+                        e.style.pointerEvents = "none";
+                    }
+
+            })
+        })
+            }
+
+
+        }
+    }
+
+
+        // })
+
+
+        seats.forEach(seat => {
+            seat.addEventListener("click", () => {
+                if (seat.classList.contains("selected") ) {
+                    seat.classList.remove("selected");
+                    selectedSeats = selectedSeats.filter(name => name !== seat.dataset.name);
+                } else {
+                    seat.classList.add("selected");
+                    selectedSeats.push(seat.dataset.name);
+                }
+                updateSelectedSeatsList();
+            });
+
+            // console.log(seat.dataset.name
+        });
+
+
+
+        function updateSelectedSeatsList() {
+            selectedSeatsList.innerHTML = "";
+            selectedSeats.forEach(seat => {
+                const listItem = document.createElement("p");
+                listItem.setAttribute("id", "seat-select")
+                listItem.textContent = seat;
+                selectedSeatsList.appendChild(listItem);
+            });
+
+            // const selectedSeatCount = selectedSeats.length;
+
+            const selectseatcount = document.getElementById("seat-length").innerText = selectedSeats.length;
+
+
+            total.innerText = selectseatcount * ticketprice;
+
+        }
+
+        function generateRandomAlphabetString(length) {
+            let result = '';
+            let num = 0
+            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            const charactersLength = characters.length;
+            for (let i = 0; i < 5; i++) {
+                result += characters.charAt(Math.floor(Math.random() * charactersLength));
+            }
+            for (let j = 0; j < 1; j++) {
+                num += Math.floor(Math.random() * 100)
+            }
+
+            return result + num;
+        }
+        const randomString = generateRandomAlphabetString();
+
+        function bookSeats() {
+            if (selectedSeats.length === 0) {
+                swal("Please select at least one seat!");
+            } else if (selectedSeats.length == 11) {
+                alert(" You have select 10 seats only!");
+            }
+            else {
+
+                // (`You have selected seats ${selectedSeats.join(", ")}.`);
+                // console.log(selectedSeats);
+                window.location.href = `movie_payment_page.html?name=${res.name.movie_name}`;
+
+                const user_booking = JSON.parse(localStorage.getItem("user_booking")) ?? []
+                if (JSON.parse(localStorage.getItem("user_booking"))) {
+                    user_booking.find(e => {
+                        if (e.email == e.email) {
+                            e.seat_names = selectedSeats
+                            e.booking_id = randomString
+                            e.seat_count = selectedSeats.length
+                            e.seat_price = total.innerText
+                            localStorage.setItem("user_booking", JSON.stringify(user_booking))
+
+                        }
+                        else {
+                            const booking_data = {
+                                "email": users.booking,
+                                "show_day": day,
+                                "show_date": date,
+                                "show_month": month,
+                                "theatre_name": theatre_name,
+                                "seat_names": selectedSeats,
+                                "booking_id": randomString,
+                                "seat_count": selectedSeats.length,
+                                "seat_price": total.innerText,
+                                "show_time": show_time,
+                            }
+                            user_booking.push(booking_data)
+
+                            // users.push(booking_data)
+
+                            localStorage.setItem("user_booking", JSON.stringify(user_booking))
+                        }
+                    })
+                }
+
+                selectedSeats = [];
+
+                seats.forEach(seat => seat.classList.remove("selected"));
+                updateSelectedSeatsList();
+            }
+        }
+    </script>
+
+</body>
+
+</html>
